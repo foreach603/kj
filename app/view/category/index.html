@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分类管理</title>
+</head>
+
+<body>
+    <a href="/">管理页面</a>|<a href="/category/add">新增分类</a>
+    <br>
+    <hr>
+    <form action="/category/order" method="post">
+        <table border="0" width="500">
+            <h1>分类列表</h1>
+            <tr>
+                <th>排序</th>
+                <th>列表</th>
+                <th>操作</th>
+            </tr>
+            {% for item in treelist %}
+            <tr>
+                <td>
+                    <input type="text" size="2" name="id[{{item.id}}]" value="{{item.ord}}">
+                </td>
+                <td>
+                    {% for i in 0..item.level*8 %} &nbsp; {% endfor %} |-{{item.catname}}
+                </td>
+                <td>
+                    <a href="/category/toupdate?id={{item.id}}">修改</a> / {% if item.childs == '' %}
+                    <a href="/category/todelete?id={{item.id}}" onclick="return confirm('sure del ?')">删除
+                    </a> {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="3"><input type="submit" value="排序"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>update</title>
+</head>
+
+<body style="border: 50px;">
+    <form action="/category/doupdate" method="post">
+        上级分类：
+        <select name="pid">
+            <option value="0"  {{cate.pid == 0 ? 'selected' : ''}}>
+                {% for item in treelist %}
+                <option value="{{item.id}}"{{cate.pid == item.id ? 'selected' : ''}}>
+                    {% for i in 0..item.level*6 %} &nbsp; {% endfor %} |-{{item.catname}}
+            </option>
+            </tr>
+            {% endfor %}
+            </option>
+        </select>
+        <br> 分类名称：
+        <input type="text" name="catname" value="{{cate.catname}}"><br> 排列顺序
+        <input type="text" name="ord" size="2" value="{{cate.ord}}"><br>
+        <input type="hidden" name="id" value="{{cate.id}}">
+        <input type="submit" value="修改分类">
+    </form>
+</body>
+
+</html>

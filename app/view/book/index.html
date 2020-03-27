@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图书列表</title>
+</head>
+
+<body>
+    <a href="/">管理页面</a>|<a href="/book/add">新增图书</a>
+    <br>
+    <hr>
+
+    <table border="0" width="500">
+        <h1>图书列表</h1>
+        <tr>
+            <th>图书ID</th>
+            <th width="380px">图书名称</th>
+            <th>操作</th>
+        </tr>
+        {% for item in booklist %}
+        <tr>
+            <td>
+                {{item.id}}
+            </td>
+            <td>
+                <img src="/uploads/{{item.filename}}" width="100" height="150"> {{item.name}}{{itrm.price}},{{item.description}},还剩{{item.stock}}本。
+            </td>
+            <td>
+                <a href="/book/toupdate?id={{item.id}}">修改</a> /
+                <a href="/book/todelete?id={{item.id}}" onclick="return confirm('sure del ?')">删除
+                    </a>
+            </td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td>
+                {% autoescape false %} {{page}} {% endautoescape %}
+            </td>
+        </tr>
+
+    </table>
+
+</body>
+
+</html>

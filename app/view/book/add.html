@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>book_add</title>
+</head>
+
+<body style="border: 50px;">
+    <form action="/book/doadd" method="post" enctype="multipart/form-data">
+        图书分类：
+        <select name="cid">
+            
+                {% for item in treelist %}
+                <option value="{{item.id}}">
+                    {% for i in 0..item.level*6 %} &nbsp; {% endfor %} |-{{item.catname}}
+            </option>
+            </tr>
+            {% endfor %}
+            </option>
+        </select>
+        <br> 图书名称：
+        <input type="text" name="name" value=""><br> 图书介绍：
+        <input type="text" name="description" value=""><br> 图书价格：
+        <input type="text" name="price" value=""><br> 图书库存：
+        <input type="text" name="stock" value=""><br> 图书封面：
+        <input type="file" name="filename" value=""><br>
+
+
+        <input type="submit" value="添加图书">
+    </form>
+</body>
+
+</html>
